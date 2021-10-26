@@ -2,10 +2,31 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>Tim Hanewich</Authors>
+    <Description>Helper library for transacting with the Aletheia API service (https://aletheiaapi.com)</Description>
+    <PackageLicenseFile>license.md</PackageLicenseFile>
+    <PackageIcon>packageicon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/TimHanewich/Aletheia.Service</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>aletheia</PackageTags>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\license.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="packageicon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
