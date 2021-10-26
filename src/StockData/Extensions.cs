@@ -82,5 +82,30 @@ namespace Aletheia.Service.StockData
             StockData[] data = await Task.WhenAll(ToReturn);
             return data;
         }
+    
+        //Will not throw an error if one of the stocks doesn't work.
+        public static async Task<StockData[]> TryGetMultipleStockDataAsync(this AletheiaService service, string[] symbols, bool include_summary, bool include_statistical)
+        {
+            List<Task<StockData>> ToReturn = new List<Task<StockData>>();
+            foreach (string s in symbols)
+            {
+                Task<StockData> ToAdd = TryGetStockDataAsync(service, s, include_summary, include_statistical);
+                ToReturn.Add(ToAdd);
+            }
+
+            StockData[] data = await Task.WhenAll(ToReturn);
+
+            //Assemble a list of only those that actually have data
+            List<StockData> RealToReturn = new List<StockData>();
+            foreach (StockData sd in data)
+            {
+                if (sd != null)
+                {
+                    RealToReturn.Add(sd);
+                }
+            }
+
+            return RealToReturn.ToArray();
+        }
     }
 }
