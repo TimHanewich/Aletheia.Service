@@ -25,7 +25,8 @@ namespace Aletheia.Service.StockData
             HttpResponseMessage resp = await hc.SendAsync(req);
             if (resp.StatusCode != HttpStatusCode.OK)
             {
-                throw new Exception("Request to Aletheia failed with code " + resp.StatusCode.ToString());
+                string cons = await resp.Content.ReadAsStringAsync();
+                throw new Exception("Request to Aletheia for stock '" + symbol.ToUpper().Trim() + "' failed with code " + resp.StatusCode.ToString() + ". Msg: " + cons);
             }
 
             //Get the body
