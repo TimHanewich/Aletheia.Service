@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Aletheia.Service;
+using System.Collections.Generic;
 
 namespace Aletheia.Service.StockData
 {
@@ -51,6 +52,19 @@ namespace Aletheia.Service.StockData
 
             return ToReturn;
 
+        }
+    
+        public static async Task<StockData[]> GetMultipleStockDataAsync(this AletheiaService service, string[] symbols, bool include_summary, bool include_statistical)
+        {
+            List<Task<StockData>> ToReturn = new List<Task<StockData>>();
+            foreach (string s in symbols)
+            {
+                Task<StockData> ToAdd = GetStockDataAsync(service, s, include_summary, include_statistical);
+                ToReturn.Add(ToAdd);
+            }
+
+            StockData[] data = await Task.WhenAll(ToReturn);
+            return data;
         }
     }
 }
