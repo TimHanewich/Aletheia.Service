@@ -16,10 +16,9 @@ namespace Aletheia.Service.StockData
         {
             string url = "https://api.aletheiaapi.com/StockData";
             url = url + "?symbol=" + symbol.Trim().ToUpper() + "&summary=" + include_summary.ToString().ToLower() + "&statistics=" + include_statistical.ToString().ToLower();
-            HttpRequestMessage req = new HttpRequestMessage();
+            HttpRequestMessage req = service.PrepareHttpRequestMessage();
             req.Method = HttpMethod.Get;
             req.RequestUri = new Uri(url);
-            req.Headers.Add("key", service.ApiKey.ToString());
 
             HttpClient hc = new HttpClient();
             HttpResponseMessage resp = await hc.SendAsync(req);
