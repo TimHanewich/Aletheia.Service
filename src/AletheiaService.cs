@@ -35,5 +35,12 @@ namespace Aletheia.Service
             }
         }
     
+        public HttpRequestMessage PrepareHttpRequestMessage()
+        {
+            HttpRequestMessage req = new HttpRequestMessage();
+            req.Headers.Add("key", ApiKey.ToString());
+            req.Headers.Add("user-agent", "dotnet-aletheia-service-sdk");
+            return req;
+        }
     }
 }
