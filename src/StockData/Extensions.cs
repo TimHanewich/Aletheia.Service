@@ -55,6 +55,21 @@ namespace Aletheia.Service.StockData
 
         }
     
+        public static async Task<StockData> TryGetStockDataAsync(this AletheiaService service, string symbol, bool include_summary, bool include_statistical)
+        {
+            //Try but return null if it doesn't work.
+            StockData ToReturn = null;
+            try
+            {
+                ToReturn = await GetStockDataAsync(service, symbol, include_summary, include_statistical);
+            }
+            catch
+            {
+
+            }
+            return ToReturn;
+        }
+
         public static async Task<StockData[]> GetMultipleStockDataAsync(this AletheiaService service, string[] symbols, bool include_summary, bool include_statistical)
         {
             List<Task<StockData>> ToReturn = new List<Task<StockData>>();
