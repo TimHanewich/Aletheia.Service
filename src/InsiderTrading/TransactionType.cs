@@ -1,6 +1,6 @@
 using System;
 
-namespace Aletheia.Service
+namespace Aletheia.Service.InsiderTrading
 {
     public enum TransactionType
     {
