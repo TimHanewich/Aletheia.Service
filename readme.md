@@ -112,3 +112,28 @@ An example of one of records returned:
    "UnderlyingSecurityQuantity":null
 }
 ```
+
+### Search Entities
+As seen in the **Latest Transactions** documentation above, you can specify the CIK (Central Index Key, a unique SEC-assigned ID) of the issuer (company) or owner (insider) to filter the results to only this issuer or owner.
+To find the CIK of the issuer or owner ("entity") that you are interested in, use the [**Search Entities**](https://api.aletheiaapi.com/SearchEntities) service:
+
+```
+AletheiaService service = new AletheiaService("<your key here>");
+Entity[] entities = await service.SearchEntitiesAsync("cook", 10);
+```
+An example of a record from the search results:
+```
+{
+   "Cik":1214156,
+   "Name":"COOK TIMOTHY D",
+   "TradingSymbol":null
+}
+```
+Records that relate to an *issuer* (company), will have a Trading Symbol:
+```
+{
+   "Cik":320193,
+   "Name":"APPLE COMPUTER INC",
+   "TradingSymbol":"AAPL"
+}
+```
