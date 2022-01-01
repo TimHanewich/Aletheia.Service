@@ -10,6 +10,7 @@ namespace Aletheia.Service.EarningsCalls
         public FiscalPeriod Period {get; set;}
         public int Year {get; set;}
         public DateTime HeldAt {get; set;}
+        public int RemarksCount {get; set;}
         public SpokenRemark[] Remarks {get; set;}
     }
 }
