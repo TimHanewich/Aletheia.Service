@@ -57,6 +57,7 @@ Aletheia also provides data on insider trades of public equity and options by ex
 The primary service that exposes insider trading data is the [**Latest Transactions**](https://aletheiaapi.com/docs/#latest-transactions) endpoint. To consume the **Latest Transactions** service:
 ```
 AletheiaService service = new AletheiaService("<your key here>");
+
 LatestTransactionsRequest req = new LatestTransactionsRequest();
 req.Issuer = "MSFT"; //Stock symbol of the company I am interested in seeing trades of.
 req.Owner = "1513142"; //CIK # of Satya Nadella, CEO of Microsoft. So show insider trades of MSFT stock by Satya Nadella.
@@ -65,6 +66,7 @@ req.TransactionType = TransactionType.OpenMarketOrPrivatePurchase; //Return tran
 req.Before = new DateTime(2019, 7, 1); //Include the most recent results before July 1, 2019.
 req.Top = 10; //Only return a maximum of 10 results
 req.Cascade = true; //Include data about the SEC filing this trade originated from and the owner/issuer involved.
+
 SecurityTransactionHolding[] sths = await service.LatestTransactions(req);
 ```
 As seen above, there are many parameters you can specify to filter the insider trading results. You can omit any of these to broaden the search results.
