@@ -37,7 +37,22 @@ namespace Aletheia.Service.EarningsCalls
             //Quarter
             if (quarter.HasValue)
             {
-                con.AddQueryParameter(new UrlQueryParameter("quarter", Convert.ToInt32(quarter.Value).ToString()));
+                if (quarter.Value == FiscalPeriod.Q1)
+                {
+                    con.AddQueryParameter(new UrlQueryParameter("quarter", "q1"));
+                }
+                else if (quarter.Value == FiscalPeriod.Q2)
+                {
+                    con.AddQueryParameter(new UrlQueryParameter("quarter", "q2"));
+                }
+                else if (quarter.Value == FiscalPeriod.Q3)
+                {
+                    con.AddQueryParameter(new UrlQueryParameter("quarter", "q3"));
+                }
+                else if (quarter.Value == FiscalPeriod.Q4)
+                {
+                    con.AddQueryParameter(new UrlQueryParameter("quarter", "q4"));
+                }
             }
 
             //top
