@@ -137,3 +137,30 @@ Records that relate to an *issuer* (company), will have a Trading Symbol:
    "TradingSymbol":"AAPL"
 }
 ```
+
+## Earnings Calls
+Aletheia can provide transcripts for earnings calls of publicly traded companies. To search amongst the available transcripts:
+
+### Earnings Call Transcript Searching
+The above code snippet searches Aletheia for any transcript from a **Microsoft** ($MSFT) earnings call:
+```
+EarningsCall[] calls = await service.SearchEarningsCallsAsync("MSFT", null, null, null);
+```
+You can also further refine your search to a specific year or quarter. For example, searching for Microsoft Q1 2022 earnings call:
+```
+EarningsCall[] calls = await service.SearchEarningsCallsAsync("MSFT", 2022, FiscalPeriod.Q1, null);
+```
+The **Search Earnings Calls** service will return an array of records that look like this:
+```
+{
+   "Id":"adca5f26-c1cb-42e1-b594-8829f2de39d4",
+   "Company":{
+      "Id":"5372f27b-929c-45f6-8ae5-7404a59d307f",
+      "Name":"Microsoft",
+      "TradingSymbol":"MSFT"
+   },
+   "Period":0,
+   "Year":2022,
+   "HeldAt":"2021-10-26T00:00:00",
+}
+```
